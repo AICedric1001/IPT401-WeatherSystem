@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Features</a>
@@ -64,23 +64,7 @@
                         Your reliable source for weather information.
                     </p>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Links</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <a href="#" class="text-dark">Home</a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-dark">Features</a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-dark">About</a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-dark">Contact</a>
-                        </li>
-                    </ul>
-                </div>
+        
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">Contact</h5>
                     <ul class="list-unstyled mb-0">
@@ -110,14 +94,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="login.php" method="POST">
                         <div class="form-group">
-                            <label for="loginEmail">Email address</label>
-                            <input type="email" class="form-control" id="loginEmail" placeholder="Enter email">
+                            <label for="loginUsername">Username</label>
+                            <input type="text" class="form-control" id="loginUsername" name="username" placeholder="Enter username" required>
                         </div>
                         <div class="form-group">
                             <label for="loginPassword">Password</label>
-                            <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                            <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
@@ -137,14 +121,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="register.php" method="POST">
                         <div class="form-group">
-                            <label for="registerEmail">Email address</label>
-                            <input type="email" class="form-control" id="registerEmail" placeholder="Enter email">
+                            <label for="registerUsername">Username</label>
+                            <input type="text" class="form-control" id="registerUsername" name="username" placeholder="Enter username" required>
                         </div>
                         <div class="form-group">
                             <label for="registerPassword">Password</label>
-                            <input type="password" class="form-control" id="registerPassword" placeholder="Password">
+                            <input type="password" class="form-control" id="registerPassword" name="password" placeholder="Password" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Sign Up</button>
                     </form>
@@ -156,5 +140,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Check for URL parameter to display alert for invalid login
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('error') && urlParams.get('error') === 'invalid_credentials') {
+            alert('Invalid username or password');
+        }
+    </script>
 </body>
 </html>
