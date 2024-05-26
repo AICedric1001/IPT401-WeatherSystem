@@ -1,6 +1,10 @@
 <?php
 include_once("config.php");
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = md5($_POST['password']); // Using MD5 for simplicity; use stronger hashing (e.g., bcrypt) in production.
@@ -10,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         $_SESSION['username'] = $username;
+        $_SESSION['loggedin'] = true;
         header("Location: dashboard.php"); // Redirect to dashboard
     } else {
         header("Location: index.php?error=invalid_credentials");

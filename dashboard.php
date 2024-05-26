@@ -19,34 +19,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Dashboard</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Weather Analysis</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Reports</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Settings</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
+        <?php include 'navbar.php'; ?>
 
     <div class="container-fluid">
         <div class="row">
@@ -55,22 +28,17 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                Home
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="dashboard.php">
                                 Weather Analysis
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="reports.php">
                                 Reports
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="">
                                 Settings
                             </a>
                         </li>
@@ -87,15 +55,26 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <h1 class="mt-5">Welcome to the Weather Analysis Dashboard</h1>
                 <div class="chart-container mt-4">
-                    <canvas id="weatherChart"></canvas>
+                    <canvas id="temperatureChart"></canvas>
                 </div>
+                <div class="chart-container mt-4">
+                    <canvas id="humidityChart"></canvas>
+                </div>
+                <div class="chart-container mt-4">
+                    <canvas id="windspeedChart"></canvas>
+                </div>
+                <!-- Add more chart containers here -->
             </main>
         </div>
     </div>
 
     <script>
-        // Example weather data
-        const weatherData = {
+        // Example data for additional charts
+        const humidityData = [60, 65, 70, 72, 68];
+        const windspeedData = [10, 12, 15, 14, 13];
+
+        // Temperature Chart
+        const temperatureData = {
             labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
             datasets: [{
                 label: 'Temperature (°C)',
@@ -105,14 +84,10 @@
                 borderWidth: 1
             }]
         };
-
-        // Get the canvas element
-        const ctx = document.getElementById('weatherChart').getContext('2d');
-
-        // Create the chart
-        const weatherChart = new Chart(ctx, {
+        const temperatureCtx = document.getElementById('temperatureChart').getContext('2d');
+        const temperatureChart = new Chart(temperatureCtx, {
             type: 'line',
-            data: weatherData,
+            data: temperatureData,
             options: {
                 scales: {
                     yAxes: [{
@@ -123,6 +98,58 @@
                 }
             }
         });
+
+        // Humidity Chart
+        const humidityCtx = document.getElementById('humidityChart').getContext('2d');
+        const humidityChart = new Chart(humidityCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                datasets: [{
+                    label: 'Humidity (%)',
+                    data: humidityData,
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        // Windspeed Chart
+        const windspeedCtx = document.getElementById('windspeedChart').getContext('2d');
+        const windspeedChart = new Chart(windspeedCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                datasets: [{
+                    label: 'Windspeed (km/h)',
+                    data: windspeedData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        // Add more chart scripts here for additional charts
     </script>
 </body>
 </html>

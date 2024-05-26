@@ -1,68 +1,83 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+include_once("config.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $location = $_POST['location'];
+    $locationParts = explode(',', $location);
+
+    if (count($locationParts) == 2) {
+        $city = trim($locationParts[0]);
+        $country = trim($locationParts[1]);
+
+        $sql = "SELECT temperature 
+                FROM public_weather 
+                JOIN location ON public_weather.location_id = location.location_id 
+                WHERE city = ? AND country = ? 
+                ORDER BY dateTime DESC LIMIT 1";
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss", $city, $country);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $weatherData = $result->fetch_assoc();
+            // Populate temperature data for the chart
+            $temperatureData[] = $weatherData['temperature'];
+        } else {
+            $weatherData = null;
+        }
+        $stmt->close();
+    } else {
+        $weatherData = null;
+    }
 }
+$conn->close();
 ?>
+
+  <?php include 'navbar.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ginhawa</title>
+    <title>Weather Result</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-      <link href="styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .weather-card {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .weather-card:hover {
+            transform: translateY(-10px);
+        }
+    </style>
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
-
-    <!-- Main Content -->
     <div class="container mt-5">
-    <h1 class="text-center">Welcome to the Ginhawa</h1>
-    <p class="text-center">Get weather updates based on your location.</p>
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <form action="get_weather.php" method="POST">
-                <div class="form-group">
-                    <label for="location">Enter Your Location</label>
-                    <input type="text" class="form-control" id="location" name="location" placeholder="City, Country" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Get Weather</button>
-            </form>
+        <h1 class="text-center">Weather Result</h1>
+        <div class="weather-card bg-light">
+            <?php if ($weatherData): ?>
+                <h2 class="text-center">Weather for <?php echo htmlspecialchars($city . ', ' . $country); ?></h2>
+                <h3 class="text-center">Temperature: <?php echo htmlspecialchars($weatherData['temperature']); ?>°C</h3>
+                <!-- Removed weatherCondition as it was causing an undefined index error -->
+                <canvas id="weatherChart" width="400" height="200"></canvas>
+                <p class="text-center">Sign in to get more details about the weather.</p>
+               
+            <?php else: ?>
+                <p class="text-center">No weather data found for the specified location.</p>
+            <?php endif; ?>
         </div>
     </div>
-    <div id="weather-result" class="mt-5"></div>
-</div>
 
 
-    <!-- Footer -->
-    <footer class="bg-light text-center text-lg-start mt-5">
-        <div class="container p-4">
-            <div class="row">
-                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Weather System</h5>
-                    <p>Your reliable source for weather information.</p>
-                </div>
-        
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Contact</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <a href="#" class="text-dark">Email: support@weathersystem.com</a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-dark">Phone: +123 456 7890</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="text-center p-3 bg-dark text-white">
-            &copy; 2024 WeatherSystem. All Rights Reserved.
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
@@ -119,5 +134,38 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
         </div>
     </div>
+</body>
+
+
+    <script>
+        //canvas
+        const ctx = document.getElementById('weatherChart').getContext('2d');
+
+        // Create the chart (for demonstration purposes, with dummy data)
+        const weatherChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Temperature'],
+                datasets: [{
+                    label: 'Temperature (°C)',
+                    data: [<?php echo isset($weatherData['temperature']) ? $weatherData['temperature'] : '0'; ?>],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+
 </body>
 </html>
