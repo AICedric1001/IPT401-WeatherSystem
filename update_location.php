@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql_update_user) === TRUE) {
         // Location updated successfully
         echo "<script>alert('Location updated successfully');</script>";
-        header("Location: dashboard/dsettings.php"); // Redirect back to the settings page
+        header("Location: dsettings.php"); // Redirect back to the settings page
         exit();
     } else {
         // Error updating location
