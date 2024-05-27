@@ -1,8 +1,8 @@
 body {
     background-image: url(bg1.jpg);
     background-size: cover;
-    
 }
+
 .navbar {
     background-color: transparent;
     opacity: 3; 
@@ -57,7 +57,7 @@ footer .list-unstyled a:hover {
 }
 
 footer .bg-dark {
-    background-color: #343a40 !important; /* Dark background color */
+    background-color: transparent !important; /* Transparent background color */
     color: #fff; /* White text color */
     padding: 10px 0; /* Top and bottom padding */
 }
