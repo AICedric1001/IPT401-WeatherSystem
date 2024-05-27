@@ -51,7 +51,8 @@
 
     <div class="container">
         <h2>Our Mission</h2>
-        <p>The goal is to weather weather lang</p>
+        <p>The goal is to weather weather lang.</p>
+        <p>P.S. Kuya Kaem</p>
 
         <h2>Our Team</h2>
         <p>Two teams are here</p>

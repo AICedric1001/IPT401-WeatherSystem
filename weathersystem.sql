@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2024 at 03:59 AM
+-- Generation Time: May 27, 2024 at 04:30 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -68,6 +68,19 @@ INSERT INTO `public_weather` (`weatherID`, `location_id`, `dateTime`, `temperatu
 (2, 1, '0000-00-00 00:00:00', 32, 100, 100, 'The weather seems to be rainy.'),
 (3, 2, '0000-00-00 00:00:00', 27, 50, 150, 'Temperate Weather Condition'),
 (4, 3, '0000-00-00 00:00:00', 3, 20, 100, 'It is very cold. I know...');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `todo_list`
+--
+
+CREATE TABLE `todo_list` (
+  `id` int(11) NOT NULL,
+  `item` varchar(255) NOT NULL,
+  `status` enum('pending','completed') DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -152,6 +165,12 @@ ALTER TABLE `public_weather`
   ADD KEY `location_id` (`location_id`);
 
 --
+-- Indexes for table `todo_list`
+--
+ALTER TABLE `todo_list`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -189,6 +208,12 @@ ALTER TABLE `location`
 --
 ALTER TABLE `public_weather`
   MODIFY `weatherID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `todo_list`
+--
+ALTER TABLE `todo_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
