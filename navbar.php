@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ?>
-
+  <link rel="icon" href="GINHAWALOGO.png" type="image/x-icon">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">
         <img src="GINHAWALOGO.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">

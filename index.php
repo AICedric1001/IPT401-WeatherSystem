@@ -10,6 +10,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GINHAWA</title>
+      <link rel="icon" href="GINHAWALOGO.png" type="image/x-icon">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
       <link href="styles.css" rel="stylesheet">
 </head>
@@ -94,30 +95,39 @@ if (session_status() == PHP_SESSION_NONE) {
     </div>
 
     <!-- Register Modal -->
-    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalLabel">Sign Up</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="register.php" method="POST">
-                        <div class="form-group">
-                            <label for="registerUsername">Username</label>
-                            <input type="text" class="form-control" id="registerUsername" name="username" placeholder="Enter username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="registerPassword">Password</label>
-                            <input type="password" class="form-control" id="registerPassword" name="password" placeholder="Enter password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign Up</button>
-                    </form>
-                </div>
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerModalLabel">Sign Up</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="register.php" method="POST">
+                    <div class="form-group">
+                        <label for="registerUsername">Username</label>
+                        <input type="text" class="form-control" id="registerUsername" name="username" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" name="password" placeholder="Enter password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerCountry">Country</label>
+                        <input type="text" class="form-control" id="registerCountry" name="country" placeholder="Enter country" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerCity">City</label>
+                        <input type="text" class="form-control" id="registerCity" name="city" placeholder="Enter city" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
 </body>
 </html>
