@@ -9,7 +9,7 @@ if (session_status() == PHP_SESSION_NONE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ginhawa</title>
+    <title>GINHAWA</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
       <link href="styles.css" rel="stylesheet">
 </head>
@@ -18,7 +18,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
     <!-- Main Content -->
     <div class="container mt-5">
-    <h1 class="text-center">Welcome to the Ginhawa</h1>
+    <h1 class="text-center">Welcome to the GINHAWA</h1>
     <p class="text-center">Get weather updates based on your location.</p>
     <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -40,7 +40,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <div class="container p-4">
             <div class="row">
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Weather System</h5>
+                    <h5 class="text-uppercase">GINHAWA Weather System</h5>
                     <p>Your reliable source for weather information.</p>
                 </div>
         
@@ -58,7 +58,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
         </div>
         <div class="text-center p-3 bg-dark text-white">
-            &copy; 2024 WeatherSystem. All Rights Reserved.
+            &copy; 2024 GINHAWA. All Rights Reserved.
         </div>
     </footer>
 

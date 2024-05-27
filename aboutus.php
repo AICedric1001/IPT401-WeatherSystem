@@ -55,6 +55,14 @@
 
         <h2>Our Team</h2>
         <p>Two teams are here</p>
+
+        <h2>G - General</h2>
+        <h2>I - Information</h2>
+        <h2>N - Nar</h2>
+        <h2>H - Heat</h2>
+        <h2>A - And</h2>
+        <h2>W - Weather</h2>
+        <h2>A - Analysis</h2>
     </div>
 </body>
 </html>
