@@ -25,11 +25,11 @@
             line-height: 1.6;
         }
         .jumbotron {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #BCD1FF;
+            color: #101C35;
             padding: 100px 20px;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 1px;
             border-radius: 10px;
         }
         .btn-primary {
@@ -40,13 +40,23 @@
             background-color: #212529;
             border-color: #212529;
         }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
     </style>
 </head>
 <body>
-     <?php include 'navbar.php'; ?>
+    <?php include 'navbar.php'; ?>
     <div class="jumbotron">
-        <h1 class="display-4">About Us</h1>
-        <p class="lead">Learn more about our company and the team behind it.</p>
+        <img src="GINAHWALogo.png" width="500" height="500" class="fade-in">
     </div>
 
     <div class="container">
