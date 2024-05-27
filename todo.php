@@ -4,9 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
-    <!-- Bootstrap CSS -->
+      <link rel="icon" href="GINHAWALOGO.png" type="image/x-icon">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+     .nav-link1 {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            padding: 8px 20px;
+            margin: 10px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link1:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+        }
+        
+        .nav-link1:hover:before {
+            width: 0;
+            height: 0;
+        }
+        
+        .nav-link1:hover {
+            color: #007bff;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+        </style>
 <body>
     <?php include 'navbar.php'; ?>
     <?php include 'todo_crud.php'; ?>
@@ -24,14 +64,12 @@
                             <a class="nav-link" href="reports.php">Reports</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Settings</a>
+                            <a class="nav-link" href="dsettings.php">Settings</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Export Data</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="todo.php">To-Do List</a>
-                        </li>
+                    
                     </ul>
                 </div>
             </nav>

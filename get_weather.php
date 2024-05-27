@@ -1,5 +1,5 @@
 <?php
-include_once("config.php");
+include_once("config/config.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $location = $_POST['location'];
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-  <?php include 'navbar.php'; ?>
+  <?php include 'navbar/navbar.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +92,7 @@ $conn->close();
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="login.php" method="POST">
+                    <form action="process/login.php" method="POST">
                         <div class="form-group">
                             <label for="loginUsername">Username</label>
                             <input type="text" class="form-control" id="loginUsername" name="username" placeholder="Enter username" required>
@@ -119,7 +119,7 @@ $conn->close();
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="register.php" method="POST">
+                    <form action="process/register.php" method="POST">
                         <div class="form-group">
                             <label for="registerUsername">Username</label>
                             <input type="text" class="form-control" id="registerUsername" name="username" placeholder="Enter username" required>

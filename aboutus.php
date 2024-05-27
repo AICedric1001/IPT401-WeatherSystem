@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
+      <link rel="icon" href="images/GINHAWALOGO.png" type="image/x-icon">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -56,13 +57,13 @@
 <body>
     <?php include 'navbar.php'; ?>
     <div class="jumbotron">
-        <img src="GINAHWALogo.png" width="500" height="500" class="fade-in">
+        <img src="images/GINAHWALogo.png" width="500" height="500" class="fade-in">
     </div>
 
     <div class="container">
         <h2>Our Mission</h2>
-        <p align="justify">The goal is to weather weather lang, which entails equipping ourselves with the necessary tools and knowledge to understand and respond to weather conditions effectively. This involves accurate data collection using advanced meteorological instruments, reliable forecasting models for precise predictions, and efficient communication channels to disseminate information swiftly. Additionally, developing robust emergency preparedness plans for extreme weather events and providing education and training programs to the public are essential. By focusing on these areas, we can ensure safety, minimize damage, and enhance our ability to adapt to the ever-changing climate.</p>
-        <p>P.S. Kuya Kaem</p>
+        <p align="justify">Our mission is to revolutionize daily life by seamlessly integrating weather data into personalized scheduling and task management systems, empowering individuals to make informed decisions and optimize their activities based on current and forecasted weather conditions. Leveraging cutting-edge meteorological data collection methods and advanced forecasting models, our platform will offer tailored suggestions for planning outdoor events, scheduling travel arrangements, and managing outdoor work tasks, enhancing productivity, safety, and enjoyment. Additionally, through collaboration with local authorities and organizations, we'll develop targeted programs and services to address weather-related challenges and enhance community resilience, fostering a safer, more resilient, and more enjoyable future for all.</p>
+        <p>P.S. Kuya Kaem "Ang buhay ay weather-weather lang"</p>
 
         <h2>Our Team</h2>
         <p align="justify"> Our team is composed of two dedicated groups: the Development Team, which focuses on creating and maintaining our cutting-edge weather analysis tools, and the Research Team, which continuously gathers and interprets meteorological data to ensure our forecasts are accurate and reliable. Together, these teams collaborate to provide comprehensive weather information and solutions, ensuring we deliver the highest quality service to our users.</p>
