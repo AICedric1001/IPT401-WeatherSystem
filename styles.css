@@ -4,7 +4,8 @@ body {
     
 }
 .navbar {
-    background-color: transparent; 
+    background-color: transparent;
+    opacity: 3; 
 }
 
 .container {

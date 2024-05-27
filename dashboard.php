@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-        <?php include 'navbar.php'; ?>
+    <?php include 'navbar.php'; ?>
 
     <div class="container-fluid">
         <div class="row">
@@ -28,24 +28,19 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="dashboard.php">
-                                Weather Analysis
-                            </a>
+                            <a class="nav-link" href="dashboard.php">Weather Analysis</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="reports.php">
-                                Reports
-                            </a>
+                            <a class="nav-link" href="reports.php">Reports</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
-                                Settings
-                            </a>
+                            <a class="nav-link" href="#">Settings</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Export Data
-                            </a>
+                            <a class="nav-link" href="#">Export Data</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="todo.php">To-Do List</a>
                         </li>
                     </ul>
                 </div>
@@ -69,10 +64,6 @@
     </div>
 
     <script>
-        // Example data for additional charts
-        const humidityData = [60, 65, 70, 72, 68];
-        const windspeedData = [10, 12, 15, 14, 13];
-
         // Temperature Chart
         const temperatureData = {
             labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
@@ -90,16 +81,15 @@
             data: temperatureData,
             options: {
                 scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
         });
 
         // Humidity Chart
+        const humidityData = [60, 65, 70, 72, 68];
         const humidityCtx = document.getElementById('humidityChart').getContext('2d');
         const humidityChart = new Chart(humidityCtx, {
             type: 'bar',
@@ -115,16 +105,15 @@
             },
             options: {
                 scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
         });
 
         // Windspeed Chart
+        const windspeedData = [10, 12, 15, 14, 13];
         const windspeedCtx = document.getElementById('windspeedChart').getContext('2d');
         const windspeedChart = new Chart(windspeedCtx, {
             type: 'bar',
@@ -140,16 +129,12 @@
             },
             options: {
                 scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
         });
-
-        // Add more chart scripts here for additional charts
     </script>
 </body>
 </html>
