@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2024 at 04:30 AM
+-- Generation Time: May 27, 2024 at 09:49 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `location` (
   `location_id` int(5) NOT NULL,
-  `country` char(255) NOT NULL,
-  `city` char(255) NOT NULL,
-  `latitude` int(5) NOT NULL,
-  `longitude` int(5) NOT NULL
+  `country` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `latitude` int(5) DEFAULT NULL,
+  `longitude` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -40,9 +40,9 @@ CREATE TABLE `location` (
 --
 
 INSERT INTO `location` (`location_id`, `country`, `city`, `latitude`, `longitude`) VALUES
-(1, 'Philippines', 'Bacolod', 12, 121),
-(2, 'Japan', 'Tokyo', 24, 26),
-(3, 'Canada', 'Quebec', 45, 48);
+(1, 'Philippines', 'Bacolod', 11, 12),
+(2, 'Japan', 'Tokyo', 20, 23),
+(3, 'Canada', 'Quebec', 45, 49);
 
 -- --------------------------------------------------------
 
@@ -65,9 +65,7 @@ CREATE TABLE `public_weather` (
 --
 
 INSERT INTO `public_weather` (`weatherID`, `location_id`, `dateTime`, `temperature`, `humidity`, `windspeed`, `weatherCondition`) VALUES
-(2, 1, '0000-00-00 00:00:00', 32, 100, 100, 'The weather seems to be rainy.'),
-(3, 2, '0000-00-00 00:00:00', 27, 50, 150, 'Temperate Weather Condition'),
-(4, 3, '0000-00-00 00:00:00', 3, 20, 100, 'It is very cold. I know...');
+(5, 1, '0000-00-00 00:00:00', 32, 50, 120, 'The weather seems to be rainy.');
 
 -- --------------------------------------------------------
 
@@ -79,7 +77,8 @@ CREATE TABLE `todo_list` (
   `id` int(11) NOT NULL,
   `item` varchar(255) NOT NULL,
   `status` enum('pending','completed') DEFAULT 'pending',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `user_id` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -90,37 +89,20 @@ CREATE TABLE `todo_list` (
 
 CREATE TABLE `user` (
   `user_id` int(5) NOT NULL,
-  `username` char(255) NOT NULL,
-  `password` char(255) NOT NULL
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `location_id` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `password`) VALUES
-(3, 'Ced', 'abea67652c6cf65c9f3e0573d0fc4074');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `userlocation`
---
-
-CREATE TABLE `userlocation` (
-  `userloc__id` int(5) NOT NULL,
-  `user__id` int(5) NOT NULL,
-  `location_id` int(5) NOT NULL,
-  `country` char(255) NOT NULL,
-  `city` char(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `userlocation`
---
-
-INSERT INTO `userlocation` (`userloc__id`, `user__id`, `location_id`, `country`, `city`) VALUES
-(1, 3, 1, 'Philippines', 'Bacolod');
+INSERT INTO `user` (`user_id`, `username`, `password`, `country`, `city`, `location_id`) VALUES
+(1, 'Ced', 'abea67652c6cf65c9f3e0573d0fc4074', 'Philippines', 'Bacolod', 1),
+(2, 'Ced2', '8a2c948f63451042c9a9b1c4f319f210', 'Japan', 'Tokyo', 2);
 
 -- --------------------------------------------------------
 
@@ -130,20 +112,23 @@ INSERT INTO `userlocation` (`userloc__id`, `user__id`, `location_id`, `country`,
 
 CREATE TABLE `weather` (
   `weatherID` int(5) NOT NULL,
-  `userloc_id` int(5) NOT NULL,
-  `dateTime` datetime NOT NULL,
-  `temperature` int(5) NOT NULL,
-  `humidity` int(5) NOT NULL,
-  `windspeed` int(5) NOT NULL,
-  `weatherCondition` char(255) NOT NULL
+  `user_id` int(5) DEFAULT NULL,
+  `location_id` int(5) DEFAULT NULL,
+  `dateTime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `temperature` int(5) DEFAULT NULL,
+  `humidity` int(5) DEFAULT NULL,
+  `windspeed` int(5) DEFAULT NULL,
+  `weatherCondition` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `weather`
 --
 
-INSERT INTO `weather` (`weatherID`, `userloc_id`, `dateTime`, `temperature`, `humidity`, `windspeed`, `weatherCondition`) VALUES
-(1, 1, '0000-00-00 00:00:00', 12, 123, 21, '12');
+INSERT INTO `weather` (`weatherID`, `user_id`, `location_id`, `dateTime`, `temperature`, `humidity`, `windspeed`, `weatherCondition`) VALUES
+(1, 1, 1, '2024-05-27 06:48:22', 32, 50, 120, 'The weather seems to be rainy.'),
+(2, 1, 1, '2024-05-28 06:49:34', 35, 50, 120, 'The weather seems to be rainy.'),
+(3, 1, 1, '2024-05-26 06:50:32', 29, 50, 200, 'Very Rainy');
 
 --
 -- Indexes for dumped tables
@@ -153,9 +138,7 @@ INSERT INTO `weather` (`weatherID`, `userloc_id`, `dateTime`, `temperature`, `hu
 -- Indexes for table `location`
 --
 ALTER TABLE `location`
-  ADD PRIMARY KEY (`location_id`),
-  ADD KEY `country` (`country`),
-  ADD KEY `city` (`city`);
+  ADD PRIMARY KEY (`location_id`);
 
 --
 -- Indexes for table `public_weather`
@@ -168,22 +151,14 @@ ALTER TABLE `public_weather`
 -- Indexes for table `todo_list`
 --
 ALTER TABLE `todo_list`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- Indexes for table `userlocation`
---
-ALTER TABLE `userlocation`
-  ADD PRIMARY KEY (`userloc__id`),
-  ADD KEY `country` (`country`),
-  ADD KEY `city` (`city`),
-  ADD KEY `user__id` (`user__id`),
+  ADD PRIMARY KEY (`user_id`),
   ADD KEY `location_id` (`location_id`);
 
 --
@@ -191,7 +166,8 @@ ALTER TABLE `userlocation`
 --
 ALTER TABLE `weather`
   ADD PRIMARY KEY (`weatherID`),
-  ADD KEY `userloc_id` (`userloc_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `location_id` (`location_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -207,25 +183,19 @@ ALTER TABLE `location`
 -- AUTO_INCREMENT for table `public_weather`
 --
 ALTER TABLE `public_weather`
-  MODIFY `weatherID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `weatherID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `todo_list`
 --
 ALTER TABLE `todo_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `userlocation`
---
-ALTER TABLE `userlocation`
-  MODIFY `userloc__id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `weather`
@@ -244,19 +214,23 @@ ALTER TABLE `public_weather`
   ADD CONSTRAINT `public_weather_ibfk_1` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`);
 
 --
--- Constraints for table `userlocation`
+-- Constraints for table `todo_list`
 --
-ALTER TABLE `userlocation`
-  ADD CONSTRAINT `userlocation_ibfk_6` FOREIGN KEY (`user__id`) REFERENCES `user` (`user_id`),
-  ADD CONSTRAINT `userlocation_ibfk_7` FOREIGN KEY (`city`) REFERENCES `location` (`city`),
-  ADD CONSTRAINT `userlocation_ibfk_8` FOREIGN KEY (`country`) REFERENCES `location` (`country`),
-  ADD CONSTRAINT `userlocation_ibfk_9` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`);
+ALTER TABLE `todo_list`
+  ADD CONSTRAINT `todo_list_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`);
 
 --
 -- Constraints for table `weather`
 --
 ALTER TABLE `weather`
-  ADD CONSTRAINT `weather_ibfk_2` FOREIGN KEY (`userloc_id`) REFERENCES `userlocation` (`userloc__id`);
+  ADD CONSTRAINT `weather_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  ADD CONSTRAINT `weather_ibfk_2` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
