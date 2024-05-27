@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">
-        <img src="bg1.jpg" width="30" height="30" class="d-inline-block align-top" alt="Logo">
+        <img src="GINHAWALOGO.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">
         Ginhawa
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
