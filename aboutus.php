@@ -51,15 +51,19 @@
 
     <div class="container">
         <h2>Our Mission</h2>
-        <p>The goal is to weather weather lang.</p>
+        <p align="justify">The goal is to weather weather lang, which entails equipping ourselves with the necessary tools and knowledge to understand and respond to weather conditions effectively. This involves accurate data collection using advanced meteorological instruments, reliable forecasting models for precise predictions, and efficient communication channels to disseminate information swiftly. Additionally, developing robust emergency preparedness plans for extreme weather events and providing education and training programs to the public are essential. By focusing on these areas, we can ensure safety, minimize damage, and enhance our ability to adapt to the ever-changing climate.</p>
         <p>P.S. Kuya Kaem</p>
 
         <h2>Our Team</h2>
-        <p>Two teams are here</p>
+        <p align="justify"> Our team is composed of two dedicated groups: the Development Team, which focuses on creating and maintaining our cutting-edge weather analysis tools, and the Research Team, which continuously gathers and interprets meteorological data to ensure our forecasts are accurate and reliable. Together, these teams collaborate to provide comprehensive weather information and solutions, ensuring we deliver the highest quality service to our users.</p>
 
+        <br>
+        <br>
+
+        <h1> GINHAWA Stands for:</h1>
         <h2>G - General</h2>
         <h2>I - Information</h2>
-        <h2>N - Nar</h2>
+        <h2>N - Navigation</h2>
         <h2>H - Heat</h2>
         <h2>A - And</h2>
         <h2>W - Weather</h2>

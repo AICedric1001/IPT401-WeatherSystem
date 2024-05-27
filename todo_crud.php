@@ -1,6 +1,6 @@
 <?php
-  include 'config.php';
-  
+include 'config.php';
+
 // Handle Create and Update
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['add'])) {
@@ -20,6 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $sql = "DELETE FROM todo_list WHERE id=$id";
+    $conn->query($sql);
+    
+    // Reset auto-increment value
+    $sql = "ALTER TABLE todo_list AUTO_INCREMENT = 1";
+    $conn->query($sql);
+    
+    // Reorder IDs
+    $sql = "SET @count = 0";
+    $conn->query($sql);
+    $sql = "UPDATE todo_list SET id = @count:= @count + 1";
     $conn->query($sql);
 }
 
