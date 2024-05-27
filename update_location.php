@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
 include_once("config.php");
-=======
-include_once("config/config.php");
->>>>>>> eef26541c4ef6eb5894cd9f785b8310342037606
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
